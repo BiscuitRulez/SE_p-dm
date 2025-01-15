@@ -1,0 +1,42 @@
+.claim-popup .popup-content {
+    padding: 20px;
+  }
+  
+  .product-details {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .product-image {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+  }
+  
+  .product-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .claim-form {
+    margin-top: 20px;
+  }
+  
+  .claim-select {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .claim-textarea {
+    margin-bottom: 10px;
+  }
+  
+  .claim-upload {
+    margin-bottom: 20px;
+  }
+  
+  .claim-submit {
+    background-color: #ff4d4f;
+    border: none;
+    color: white;
+  }

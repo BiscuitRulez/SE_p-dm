@@ -1,0 +1,17 @@
+.button-container {
+    display: flex;
+    justify-content: center; /* จัดตำแหน่งให้ปุ่มอยู่ตรงกลาง */
+    margin-top: 16px; /* เพิ่มระยะห่างจากด้านบน */
+  }
+  
+  .save-all-button {
+    height: 50px; /* ปรับความสูงของปุ่ม */
+    font-size: 18px; /* ขยายขนาดตัวอักษร */
+    background-color: rgb(43, 93, 201); /* สีพื้นหลังเริ่มต้น (ส้มเข้ม) */
+    border-radius: 8px; /* มุมปุ่มมน */
+    width: 100%; /* ให้ปุ่มเต็มความกว้าง */
+    max-width: 400px; /* จำกัดความกว้างสูงสุดของปุ่ม */
+    transition: background-color 0.2s ease; /* เพิ่มการเปลี่ยนสีพื้นหลังเมื่อ hover */
+  }
+  
+  

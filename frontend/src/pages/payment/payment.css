@@ -1,0 +1,99 @@
+.layout-content {
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    background-color: #f0f2f5;
+    min-height: 100vh;
+  }
+
+  .card-left {
+    flex: 1;
+    max-width: 60%; 
+    padding: 15px;
+  }
+  
+  .card-section {
+    margin-bottom: 20px;
+  }
+  
+  .card-section-title {
+    margin-top: 0%;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  
+  .items-list {
+    border: 1px solid #f0f0f0;
+    padding: 10px;
+    max-height: 200px;
+    overflow-y: auto; 
+  }  
+  
+  .items-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .items-list-item-text {
+    font-size: 14px;
+  }
+  
+ .radio-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .radio-option {
+    display: flex;
+    align-items: center;
+  }
+  
+  .select-dropdown {
+    width: 100%;
+    margin-bottom: 10px; 
+  }
+  
+  .card-right {
+    height: 50%;
+    width: 40%;
+  }
+  
+  .order-summary {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 10px; 
+  }
+
+  .order-summary-2 {
+    margin-bottom: 10px; 
+  }
+  .order-summary-value-2 {
+    margin-left: 3px;
+    font-weight: bold; 
+  } 
+  
+  .order-summary-value {
+    margin-left: 20px; 
+    font-weight: bold;
+  }  
+  
+  .order-summary-divider {
+    margin: 10px 0;
+  }
+  
+  .order-summary-button {
+    width: 100%;
+    background-color: #ff4d4f;
+    color: white;
+    font-weight: 600;
+  }
+  
+  .spacing {
+    margin-left: 20px; 
+  }

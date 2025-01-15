@@ -1,0 +1,132 @@
+.ticket {
+    display: flex;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* ทำให้เงามีลักษณะเป็นตั๋ว */
+    overflow: hidden;
+    margin-bottom: 16px;
+    position: relative;
+    height: 180px; /* ปรับความสูงให้เหมาะสมกับตั๋ว */
+    border: 2px solid #E2E8F0; /* ขอบที่ชัดเจน */
+    background: linear-gradient(135deg, #f7f7f7 25%, transparent 25%) -50px 0,
+                linear-gradient(225deg, #f7f7f7 25%, transparent 25%) -50px 0,
+                linear-gradient(45deg, #f7f7f7 25%, transparent 25%),
+                linear-gradient(315deg, #f7f7f7 25%, transparent 25%);
+    background-size: 100px 100px;
+    background-color: #fff;
+  }
+  
+  .ticket-content {
+    display: flex;
+    width: 100%;
+    padding: 16px;
+    gap: 16px;
+    align-items: center;
+  }
+  
+  .ticket-image {
+    flex-shrink: 0;
+  }
+  
+  .ticket-image-img {
+    width: 60px; /* ขยายขนาดภาพ */
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #E2E8F0; /* ขอบของภาพ */
+  }
+  
+  .ticket-text {
+    flex-grow: 1;
+    min-width: 0;
+  }
+  
+  .ticket-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px; /* เพิ่มระยะห่าง */
+  }
+  
+  .ticket-brand-img {
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .ticket-text h2 {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+    color: #333333;
+  }
+  
+  .ticket-text p {
+    font-size: 14px;
+    margin: 4px 0;
+    color: #666666;
+  }
+  
+  .ticket-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .ticket-button {
+    padding: 10px 20px; /* ขยายปุ่ม */
+    font-size: 16px;
+    background-color: #2B6CB0;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    min-width: 100px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  .ticket-button:hover {
+    background-color: #2C5282;
+  }
+  
+  .ticket-button:disabled {
+    background-color: #E2E8F0;
+    color: #A0AEC0;
+    cursor: not-allowed;
+  }
+  
+  .terms-button {
+    background: none;
+    border: none;
+    color: #2B6CB0;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  
+  .terms-button:hover {
+    text-decoration: underline;
+  }
+  
+  /* เพิ่มเส้นขอบคล้ายการตัดตั๋ว */
+  .ticket::before {
+    content: "iGotsofar";
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: #2B6CB0;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+ 
+  
+  
