@@ -13,7 +13,7 @@ func TestProduct(t *testing.T) {
     t.Run("name is required", func(t *testing.T) {
         product := entity.Product{
             Name: "",
-            Price: 100,
+            // Price: 100,
             Description: "Test product",
         }
         ok, err := govalidator.ValidateStruct(product)
@@ -25,7 +25,7 @@ func TestProduct(t *testing.T) {
     t.Run("price must be positive", func(t *testing.T) {
         product := entity.Product{
             Name: "Test Product",
-            Price: -100,
+            // Price: -100,
             Description: "Test product",
         }
         ok, err := govalidator.ValidateStruct(product)
@@ -37,7 +37,7 @@ func TestProduct(t *testing.T) {
     t.Run("description is required", func(t *testing.T) {
         product := entity.Product{
             Name: "Test Product",
-            Price: 100,
+            // Price: 100,
             Description: "",
         }
         ok, err := govalidator.ValidateStruct(product)

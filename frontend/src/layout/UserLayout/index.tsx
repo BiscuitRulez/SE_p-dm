@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {  Space, Button, Breadcrumb, Layout, Menu, theme, message, Dropdown, Avatar, Typography } from "antd";
 import {  UserOutlined, DashboardOutlined, PercentageOutlined,DollarOutlined,ShoppingCartOutlined,CheckCircleOutlined  } from "@ant-design/icons";
 import { Link, Routes, Route } from "react-router-dom";
-import logo from "../../assets/logo.jpg";
+import logo from "../../assets/logo.png";
 import { GetUsersById } from "../../services/https";
 
 // User Pages

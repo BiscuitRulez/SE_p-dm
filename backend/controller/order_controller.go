@@ -59,12 +59,12 @@ func CreateOrder(c *gin.Context) {
         }
 
         // Create order item
-        orderItem := cartItem.ToOrderItem(order.ID)
-        if err := tx.Create(&orderItem).Error; err != nil {
-            tx.Rollback()
-            c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create order item"})
-            return
-        }
+        // orderItem := cartItem.ToOrderItem(order.ID)
+        // if err := tx.Create(&orderItem).Error; err != nil {  fix herererererererererer
+        //     tx.Rollback()
+        //     c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create order item"})
+        //     return
+        // }
 
         // Update stock
         cartItem.Product.Stock.Quantity -= cartItem.Quantity
@@ -81,7 +81,7 @@ func CreateOrder(c *gin.Context) {
             return
         }
 
-        order.TotalPrice += orderItem.TotalPrice
+        // order.TotalPrice += orderItem.TotalPrice fix hererererererererereeere
     }
 
     // Update order total

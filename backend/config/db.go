@@ -67,45 +67,40 @@ func SetupDatabase() {
 		
 	)
 
-	hashedPassword, _ := HashPassword("123456")
+	hashedPassword, _ := HashPassword("123")
 
 	BirthDay, _ := time.Parse("2006-01-02", "1988-11-12")
-	users := []entity.Users{
-		{
-			FirstName:   "Kunlasatri",
-			LastName:    "Kramoncham",
-			Email:       "May@gmail.com",
-			Password:    hashedPassword,
-			BirthDay:    BirthDay,
-			PhoneNumber: "0615871759",
-			Role:        "admin",
-			PointID:     1,
-		},
-		{
-			FirstName:   "a",
-			LastName:    "aa",
-			Email:       "User@gmail.com",
-			Password:    hashedPassword,
-			BirthDay:    BirthDay,
-			PhoneNumber: "0987654321",
-			Role:        "user",
-			PointID:     1,
-		},
+
+	User := &entity.Users{
+
+		FirstName: "god",
+
+       	LastName:  "palm",
+
+       	Email:     "admin@gmail.com",
+
+		PhoneNumber: "0956109413",
+
+       	Password:  hashedPassword,
+
+       	BirthDay:  BirthDay,
+
+		Role: "admin",
 	}
 	
-	for _, user := range users {
-		if err := db.Create(&user).Error; err != nil {
-			fmt.Printf("Failed to seed user %s: %v\n", user.FirstName, err)
-		}
-	}
+	db.FirstOrCreate(User, &entity.Users {
+
+		Email: "admin@gmail.com",
+
+	})
 
 	var sampleProducts = []entity.Product{
-		{Name: "Modern Sofa", Price: 999.99, Description: "Comfortable 3-seater sofa with premium fabric", Image: "/images/ModernSofa.jpg"},
-		{Name: "Leather Couch", Price: 1299.99, Description: "Genuine leather couch with recliner", Image: "/images/Leather Couch.jpg"},
-		{Name: "Corner Sofa", Price: 1499.99, Description: "L-shaped corner sofa with storage", Image: "/images/Corner Sofa.jpg"},
-		{Name: "Sofa Bed", Price: 799.99, Description: "Convertible sofa bed for guests", Image: "/images/Sofa Bed.jpg"},
-		{Name: "Lounge Chair", Price: 499.99, Description: "Comfortable accent chair with ottoman", Image: "/images/Lounge Chair.jpg"},
-		{Name: "Ottoman", Price: 199.99, Description: "Matching ottoman with storage", Image: "/images/Ottoman.jpg"},
+		{Name: "Modern Sofa", Description: "Comfortable 3-seater sofa with premium fabric", Image: "/images/ModernSofa.jpg"},
+		{Name: "Leather Couch", Description: "Genuine leather couch with recliner", Image: "/images/Leather Couch.jpg"},
+		{Name: "Corner Sofa",  Description: "L-shaped corner sofa with storage", Image: "/images/Corner Sofa.jpg"},
+		{Name: "Sofa Bed",  Description: "Convertible sofa bed for guests", Image: "/images/Sofa Bed.jpg"},
+		{Name: "Lounge Chair", Description: "Comfortable accent chair with ottoman", Image: "/images/Lounge Chair.jpg"},
+		{Name: "Ottoman",  Description: "Matching ottoman with storage", Image: "/images/Ottoman.jpg"},
 	}
 
     for _, product := range sampleProducts {
@@ -370,5 +365,79 @@ func SetupDatabase() {
 			PostalCode:  addr.PostalCode,
 		})
 	}
+
+	Point := &entity.Point{
+        ID:          1,
+        TotalPoint: 100,
+    }
+
+    db.FirstOrCreate(&Point, entity.Point{ID: Point.ID})
+
+    PointPolicy := &entity.PointPolicy{
+        ID:          1,
+        EarnRate:    4,  // 4 แต้ม ต่อการใช้จ่าย 1 บาท
+        RedeemRate:  100, // ใช้ 100 แต้ม เพื่อลดราคา 1 บาท
+        Description: "สะสม 4 แต้ม ต่อการใช้จ่าย 1 บาท และใช้ 100 แต้ม เพื่อลดราคา 1 บาท",
+    }
+
+    db.FirstOrCreate(&PointPolicy, entity.PointPolicy{ID: PointPolicy.ID})
+
+	stocks := []entity.Stock{
+        {
+            ID:        1,
+            Price:     850,
+            Quantity:  100,
+            Color:     "ดำ",
+            ShapeSize: "เหลี่ยม",
+            Image:     "/assets/sofa.jpg",
+            ProductID: 1,
+        },
+        {
+            ID:        2,
+            Price:     1200,
+            Quantity:  50,
+            Color:     "น้ำตาล",
+            ShapeSize: "กลม",
+            Image:     "/assets/table.jpg",
+            ProductID: 2,
+        },
+    }
+
+    for _, stock := range stocks {
+        db.FirstOrCreate(&stock, entity.Stock{ID: stock.ID})
+    }
+
+	products := []entity.Product{
+        {
+            ID:          1,
+            Name:        "โซฟา",
+            Description: "โซฟา 3 ที่นั่ง รุ่น Junie หุ้มด้วยผ้านำเข้าจากต่างประเทศ",
+            Image:       "/assets/sofa.jpg",
+            UserID:      1,
+            CatagoryID:  1,
+        },
+        {
+            ID:          2,
+            Name:        "โต๊ะ",
+            Description: "โต๊ะไม้ยางพาราสำหรับใช้งานทั่วไป",
+            Image:       "/assets/table.jpg",
+            UserID:      1,
+            CatagoryID:  2,
+        },
+        {
+            ID:          3,
+            Name:        "เก้าอี้หวาย",
+            Description: "สานด้วยเชือกปอ คุณภาพดี โครงสร้างไม้สัก(Teak Wood) มีน้ำหนักเบา แข็งแรง",
+            Image:       "/assets/chair.jpg",
+            UserID:      1,
+            CatagoryID:  1,
+        },
+    }
+
+    for _, product := range products {
+        db.FirstOrCreate(&product, entity.Product{ID: product.ID})
+    }
+    
+	
 
 }

@@ -17,16 +17,16 @@ type CartItem struct {
 }
 
 
-func (ci *CartItem) ToOrderItem(orderID uint) OrderItem {
-    return OrderItem{
-        OrderID:    orderID,
-        ProductID:  ci.ProductID,
-        Product:    ci.Product,
-        Quantity:   ci.Quantity,
-        UnitPrice:  ci.Product.Price,
-        TotalPrice: ci.Product.Price * float64(ci.Quantity),
-    }
-}
+// func (ci *CartItem) ToOrderItem(orderID uint) OrderItem { แก้ไขขขขขขขขขขขข
+//     return OrderItem{
+//         OrderID:    orderID,
+//         ProductID:  ci.ProductID,
+//         Product:    ci.Product,
+//         Quantity:   ci.Quantity,
+//         UnitPrice:  ci.Product.Price,
+//         TotalPrice: ci.Product.Price * float64(ci.Quantity),
+//     }
+// }
 
 func (ci *CartItem) Validate() error {
     if ci.Quantity <= 0 {

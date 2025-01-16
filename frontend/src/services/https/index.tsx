@@ -604,6 +604,25 @@ async function getAnalytics(productId: number): Promise<ReviewAnalytics> {
   }
 }
 
+async function GetProducts() {
+
+  return await axios
+
+    .get(`${apiUrl}/products`, requestOptions)
+
+    .then((res) => res)
+
+    .catch((e) => e.response);
+
+}
+
+async function GetProductByID(id: string) {
+  return await axios
+    .get(`${apiUrl}/products/${id}`, requestOptions)
+    .then((res) => res)
+    .catch((e) => e.response);
+}
+
 
 export {
 
@@ -647,6 +666,8 @@ export {
   getReviews,
   voteHelpful,
   getAnalytics,
+  GetProducts,
+  GetProductByID,
 
 
 };
