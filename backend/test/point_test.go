@@ -1,5 +1,5 @@
 // ใน test/point_test.go
-package test
+package unit
 
 import (
     "testing"

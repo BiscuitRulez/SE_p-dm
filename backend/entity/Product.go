@@ -22,6 +22,7 @@ type Product struct {
 	User       *Users      `gorm:"foreignKey:UserID" json:"user"` // แก้ foreignKey
 	CatagoryID uint        `json:"catagory_id"`
 	Catagory   *Catagory   `gorm:"foreignKey:CatagoryID" json:"catagory"` // แก้ foreignKey
+	ProductTags []ProductTags `gorm:"foreignKey:ProductID"`
 }
 
 // Validate validates the Product struct using custom validation

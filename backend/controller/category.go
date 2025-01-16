@@ -36,7 +36,36 @@ func GetCatagoryByID(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": catagory})
 }
 
-func UpdateCatagory(c *gin.Context) {
+func CreateCatagory(c *gin.Context) {
+
+    var newCatagory entity.Catagory // สร้างตัวแปรสำหรับเก็บข้อมูล Code ใหม่
+
+    // ผูก JSON ที่ส่งมาจาก Request Body กับตัวแปร newCode
+    if err := c.ShouldBindJSON(&newCatagory); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+        return
+    }
+
+    // เชื่อมต่อกับฐานข้อมูล
+    db := config.DB()
+
+	nc := entity.Catagory{
+
+		Name:	newCatagory.Name,
+
+	}
+
+    // บันทึกข้อมูลลงในฐานข้อมูล
+    if err := db.Create(&nc).Error; err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+        return
+    }
+
+    // ส่งข้อมูลที่สร้างสำเร็จกลับไป
+    c.JSON(http.StatusCreated, gin.H {"message": "Catagory created successfully","catagory": nc})
+}
+
+func UpdateCatagoryByID(c *gin.Context) {
 	var catagory entity.Catagory
  
 	CatagoryID := c.Param("id")

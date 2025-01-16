@@ -6,7 +6,7 @@ import (
 
 type Tags struct {
 	gorm.Model
-	Tag_name   string `json:"tag_name"`
+	Tag_Name   string `json:"Tag_Name"`
 
 	ProductTags []ProductTags `gorm:"foreignKey:TagsID"`
 }

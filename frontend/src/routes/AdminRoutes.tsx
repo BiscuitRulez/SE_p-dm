@@ -29,6 +29,11 @@ const Stock3 = Loadable(lazy(() => import("../pages/stock/Stock3")));
 
 const Stock4 = Loadable(lazy(() => import("../pages/stock/Stock4")));
 
+const AddProduct = Loadable(lazy(() => import("../pages/product/Create/AddProduct")));
+
+const EditProduct = Loadable(lazy(() => import("../pages/product/Edit/EditProduct")));
+
+
 
 
 const AdminRoutes = (isLoggedIn: boolean): RouteObject => {
@@ -91,6 +96,16 @@ const AdminRoutes = (isLoggedIn: boolean): RouteObject => {
                 element: <Stock4 />,
               },
             ],
+          },
+
+          {
+            path: "/product",
+            element: <AddProduct />,
+          },
+
+          {
+            path: "/proedit",
+            element: <EditProduct />,
           },
       ],
     };

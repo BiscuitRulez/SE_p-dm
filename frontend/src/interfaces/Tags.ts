@@ -2,6 +2,6 @@ export interface TagsInterface {
 
     ID?: number;
 
-    TagName?:    string;    	  	
+    Tag_Name?:    string;    	  	
 	
 }

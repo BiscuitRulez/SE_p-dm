@@ -122,12 +122,22 @@ func main() {
 
 		router.POST("/address", controller.AddAddressController)
 		router.GET("/address/:id", controller.GetAddressesByUserId)
+		router.GET("/address", controller.GetAllAddress)
+		router.PUT("/address/:id", controller.UpdateAddressByID)
+		router.DELETE("/address/:id", controller.DeleteAddress)
+
+		router.GET("/catagory", controller.GetAllCatagory)
+		router.GET("/catagory/:id", controller.GetCatagoryByID)
+		router.POST("/catagory/:id", controller.CreateCatagory)
+		router.PUT("/catagory/:id", controller.UpdateCatagoryByID)
+		router.DELETE("/catagory/:id", controller.DeleteCatagory)
 
 		// Product routes
-		router.GET("/products", controller.GetAllProduct)
-		router.GET("/products/:id", controller.GetProductByID)
-		router.PUT("/products/:id", controller.UpdateProduct)
-		router.DELETE("/products/:id", controller.DeleteProduct)
+		router.GET("/product", controller.GetAllProduct)
+		router.GET("/product/:id", controller.GetProductByID)
+		router.POST("/product", controller.CreateProduct)
+		router.PUT("/product/:id", controller.UpdateProductByID)
+		router.DELETE("/product/:id", controller.DeleteProduct)
 		// Cart routes
 		router.POST("/cart", controller.AddToCart)
 		router.GET("/cart", controller.GetCart)
@@ -141,10 +151,10 @@ func main() {
 		router.DELETE("/stock/:id", controller.Delete)
 
 		router.GET("/:userId", controller.GetPointsByUserID)
-	    router.POST("/redeem", controller.RedeemPoints)
-	    router.POST("/earn", controller.EarnPoints)
-	    router.PUT("/:pointId", controller.UpdatePoints)
-	    router.DELETE("/:pointId", controller.DeletePoints)
+		router.POST("/redeem", controller.RedeemPoints)
+		router.POST("/earn", controller.EarnPoints)
+		router.PUT("/:pointId", controller.UpdatePoints)
+		router.DELETE("/:pointId", controller.DeletePoints)
 
 		// Order routes
 		router.POST("/orders", controller.CreateOrder)
@@ -156,6 +166,23 @@ func main() {
 		router.GET("/products/:id/reviews/analytics", controller.GetReviewAnalytics)
 		router.POST("/reviews/:id/vote", controller.VoteHelpful)
 		router.POST("/reviews/upload", controller.UploadImage)
+
+		router.GET("/shippingstatus", controller.GetAllShippingStatus)
+		router.GET("/shippingstatus/:id", controller.GetShippingStatusByID)
+		router.PUT("/shippingstatus/:id", controller.UpdateShippingStatusByID)
+		router.DELETE("/shippingstatus/:id", controller.DeleteShippingStatus)
+
+		router.GET("/shipping", controller.GetAllShipping)
+		router.GET("/shipping/:id", controller.GetShippingByID)
+		router.POST("/shipping/:id", controller.CreateShipping)
+		router.PUT("/shipping/:id", controller.UpdateShippingByID)
+		router.DELETE("/shipping/:id", controller.DeleteShipping)
+
+		router.GET("/tags", controller.GetAllTags)
+		router.GET("/tags/:id", controller.GetTagsByID)
+		router.POST("/tags/:id", controller.CreateTags)
+		router.PUT("/tags/:id", controller.UpdateTagsByID)
+		router.DELETE("/tags/:id", controller.DeleteTags)
 
 		//Payment Route
 		// router.GET("/payments", payment.GetPayments)

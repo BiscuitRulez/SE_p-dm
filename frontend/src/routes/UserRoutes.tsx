@@ -35,6 +35,7 @@ const HomePage = Loadable(lazy(() => import("../pages/cart/HomePage")));
 
 const CartPage = Loadable(lazy(() => import("../pages/cart/CartPage")));
 
+const Tracking = Loadable(lazy(() => import("../pages/Shipping/Tracking")));
 
 
 
@@ -106,7 +107,10 @@ const UserRoutes = (isLoggedIn: boolean): RouteObject => {
         path: "/cart",
         element: <CartPage />
       },
-
+      {
+        path: "/tracking",
+        element: <Tracking />
+      },
 
     ],
   };

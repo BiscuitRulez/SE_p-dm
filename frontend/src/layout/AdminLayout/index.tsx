@@ -18,6 +18,9 @@ import Stock2 from "../../pages/stock/Stock2";
 import Stock3 from "../../pages/stock/Stock3";
 import Stock4 from "../../pages/stock/Stock4";
 
+import AddProduct from "../../pages/product/Create/AddProduct";
+import EditProduct from "../../pages/product/Edit/EditProduct";
+
 const { Header, Content, Footer } = Layout;
 
 const AdminLayout: React.FC = () => {
@@ -76,6 +79,18 @@ const AdminLayout: React.FC = () => {
                   <span>Stock2</span>
                 </Link>
               </Menu.Item>
+              <Menu.Item key="product" onClick={() => setCurrentPage("product")}>
+                <Link to="/product">
+                <UsergroupAddOutlined />
+                  <span>product</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="proedit" onClick={() => setCurrentPage("proedit")}>
+                <Link to="/proedit">
+                <UsergroupAddOutlined />
+                  <span>proedit</span>
+                </Link>
+              </Menu.Item>
               
             </Menu>
           </div>
@@ -105,6 +120,10 @@ const AdminLayout: React.FC = () => {
               <Route path="/Stock2" element={<Stock2 />} />
               <Route path="/Stock3" element={<Stock3 />} />
               <Route path="/Stock4" element={<Stock4 />} />
+
+              <Route path="/product" element={<AddProduct />} />
+              <Route path="/proedit" element={<EditProduct />} />
+
             </Routes>
           </div>
         </Content>
