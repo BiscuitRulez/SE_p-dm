@@ -49,7 +49,7 @@ const UserRoutes = (isLoggedIn: boolean): RouteObject => {
         element: <Dashboard />, // กำหนดเส้นทางเริ่มต้น
       },
       {
-        path: "/",
+        path: "/dashboard",
         element: <Dashboard />,
       },
       {
