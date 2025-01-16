@@ -12,6 +12,6 @@ type Shipping struct {
 	ShippingStatusID	uint 
 	ShippingStatus   	ShippingStatus 	`gorm:"foreignKey:ShippingStatusID"`
 
-	Order []Order `gorm:"foreignKey:ShippingID"`
+	
 	
 }

@@ -7,6 +7,8 @@ import Loadable from "../components/third-party/Loadable";
 import UserLayout from "../layout/UserLayout";
 
 
+
+
 const MainPages = Loadable(lazy(() => import("../pages/authentication/Login")));
 
 const Dashboard = Loadable(lazy(() => import("../pages/customer/palm/dashboard")));
@@ -29,6 +31,12 @@ const HisCaim = Loadable(lazy(() => import("../pages/claim/HistoryClaim")));
 
 const Claimrequest = Loadable(lazy(() => import("../pages/claim/Claim_request")));
 
+const HomePage = Loadable(lazy(() => import("../pages/cart/HomePage")));
+
+const CartPage = Loadable(lazy(() => import("../pages/cart/CartPage")));
+
+
+
 
 const UserRoutes = (isLoggedIn: boolean): RouteObject => {
 
@@ -37,61 +45,73 @@ const UserRoutes = (isLoggedIn: boolean): RouteObject => {
     element: isLoggedIn ? <UserLayout /> : <MainPages />,
     children: [
       {
-        path: "/dashboard",
+        index: true, // Default path
+        element: <Dashboard />, // กำหนดเส้นทางเริ่มต้น
+      },
+      {
+        path: "/",
         element: <Dashboard />,
       },
-
       {
         path: "/customer",
         children: [
           {
-            path: "/customer",
+            path: "",
             element: <Customer />,
           },
           {
-            path: "/customer/create",
+            path: "create",
             element: <CreateCustomer />,
           },
           {
-            path: "/customer/edit/:id",
+            path: "edit/:id",
             element: <EditCustomer />,
           },
         ],
       },
-
       {
         path: "/code",
         element: <UserCodes />,
       },
-
       {
         path: "/profile",
         children: [
           {
-            path: "/profile",
+            path: "",
             element: <ProfileEdit />,
           },
           {
-            path: "/profile/address",
+            path: "address",
             element: <AddAddressPage />,
-          }
-        ]
+          },
+        ],
       },
       {
-        path: "/payment", 
+        path: "/payment",
         element: <PaymentPage />,
       },
       {
-        path: "/historyclaim", 
+        path: "/historyclaim",
         element: <HisCaim />,
       },
       {
-        path: "/claimrequest", 
+        path: "/claimrequest",
         element: <Claimrequest />,
       },
+      {
+        path: "/home",
+        element: <HomePage />
+      },
+      {
+        path: "/cart",
+        element: <CartPage />
+      },
+
+
     ],
   };
 };
+
 
 
 

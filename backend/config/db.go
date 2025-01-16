@@ -61,6 +61,10 @@ func SetupDatabase() {
 		&entity.Point{},
 		&entity.PointPolicy{},
 		&entity.PointTran{},
+		&entity.CartItem{},
+		&entity.Review{},
+        &entity.ReviewAnalytics{},
+		
 	)
 
 	hashedPassword, _ := HashPassword("123456")
@@ -94,6 +98,30 @@ func SetupDatabase() {
 			fmt.Printf("Failed to seed user %s: %v\n", user.FirstName, err)
 		}
 	}
+
+	var sampleProducts = []entity.Product{
+		{Name: "Modern Sofa", Price: 999.99, Description: "Comfortable 3-seater sofa with premium fabric", Image: "/images/ModernSofa.jpg"},
+		{Name: "Leather Couch", Price: 1299.99, Description: "Genuine leather couch with recliner", Image: "/images/Leather Couch.jpg"},
+		{Name: "Corner Sofa", Price: 1499.99, Description: "L-shaped corner sofa with storage", Image: "/images/Corner Sofa.jpg"},
+		{Name: "Sofa Bed", Price: 799.99, Description: "Convertible sofa bed for guests", Image: "/images/Sofa Bed.jpg"},
+		{Name: "Lounge Chair", Price: 499.99, Description: "Comfortable accent chair with ottoman", Image: "/images/Lounge Chair.jpg"},
+		{Name: "Ottoman", Price: 199.99, Description: "Matching ottoman with storage", Image: "/images/Ottoman.jpg"},
+	}
+
+    for _, product := range sampleProducts {
+        if err := db.Create(&product).Error; err != nil {
+        }
+        
+        stock := entity.Stock{
+            ProductID:   product.ID,
+            Quantity:    50,
+            MinQuantity: 10,
+            Status:      "In Stock",
+        }
+        if err := db.Create(&stock).Error; err != nil { 
+        }
+    }
+  
 	
 //---------------------------------------------------------------------------------------------------------------//
 	payments := []entity.Payment{
@@ -285,21 +313,21 @@ func SetupDatabase() {
 	// 	Email: "admin@gmail.com",
 	// })
 ////////////
-	Stock := &entity.Stock{
+	// Stock := &entity.Stock{
 
-		ID:        1,
-		Price:     850,
-		Quantity:  100,
-		Color:     "ดำ",
-		ShapeSize: "เหลี่ยม",
-		Image:     "C:/Users/Home/Desktop/programming/SE/SE-67/frontend/src/assets/sofa.jpg",
-		ProductID: 1,
-	}
+	// 	ID:        1,
+	// 	Price:     850,
+	// 	Quantity:  100,
+	// 	Color:     "ดำ",
+	// 	ShapeSize: "เหลี่ยม",
+	// 	Image:     "C:/Users/Home/Desktop/programming/SE/SE-67/frontend/src/assets/sofa.jpg",
+	// 	ProductID: 1,
+	// }
 
-	db.FirstOrCreate(Stock, &entity.Stock{
+	// db.FirstOrCreate(Stock, &entity.Stock{
 
-		ID: 1,
-	})
+	// 	ID: 1,
+	// })
 
 	// Product := &entity.Product{
 
@@ -329,8 +357,8 @@ func SetupDatabase() {
 	}
 
 	Address := []entity.Address{
-		{FullAddress: "123 Main St", City: "Metropolis", Province: "MT", PostalCode: "54321", UserID: 2},
-		{FullAddress: "456 Elm St", City: "Gotham", Province: "GT", PostalCode: "12345", UserID: 2},
+		{FullAddress: "123 Main St", City: "Metropolis", Province: "MT", PostalCode: "54321"},
+		{FullAddress: "456 Elm St", City: "Gotham", Province: "GT", PostalCode: "12345"},
 	}
 
 	for _, addr := range Address {
@@ -340,7 +368,6 @@ func SetupDatabase() {
 			City:        addr.City,
 			Province:    addr.Province,
 			PostalCode:  addr.PostalCode,
-			UserID:      addr.UserID,
 		})
 	}
 

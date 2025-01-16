@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Breadcrumb, Layout, Menu, theme, message, Dropdown, Avatar } from "antd";
-import { UserOutlined, DashboardOutlined, PercentageOutlined,DollarOutlined,ShoppingCartOutlined,CheckCircleOutlined  } from "@ant-design/icons";
+import {  Space, Button, Breadcrumb, Layout, Menu, theme, message, Dropdown, Avatar, Typography } from "antd";
+import {  UserOutlined, DashboardOutlined, PercentageOutlined,DollarOutlined,ShoppingCartOutlined,CheckCircleOutlined  } from "@ant-design/icons";
 import { Link, Routes, Route } from "react-router-dom";
 import logo from "../../assets/logo.jpg";
 import { GetUsersById } from "../../services/https";
@@ -19,9 +19,14 @@ import PaymentPage from "../../pages/payment/payment";
 import HisCaim from "../../pages/claim/HistoryClaim";
 
 import Claimrequest from "../../pages/claim/Claim_request";
+import HomePage from "../../pages/cart/HomePage";
+import CartPage from "../../pages/cart/CartPage";
+
+import './index.css'
 
 
 const { Header, Content, Footer } = Layout;
+const { Title, Text } = Typography;
 
 const UserLayout: React.FC = () => {
     const page = localStorage.getItem("page");
@@ -74,6 +79,35 @@ const UserLayout: React.FC = () => {
         </Menu>
     );
 
+  
+   
+    const AppFooter: React.FC = () => (
+        <Footer className="app-footer">
+          <div className="footer-content">
+            <div className="footer-section">
+              <Title level={4}>About Us</Title>
+              <Text>IGotSofa provides quality furniture for your home</Text>
+            </div>
+            <div className="footer-section">
+              <Title level={4}>Contact</Title>
+              <Text>Email: support@igotsofa.com</Text>
+              <Text>Phone: (555) 123-4567</Text>
+            </div>
+            <div className="footer-section">
+              <Title level={4}>Follow Us</Title>
+              <Space>
+                <Button type="link">Facebook</Button>
+                <Button type="link">Instagram</Button>
+                <Button type="link">Twitter</Button>
+              </Space>
+            </div>
+          </div>
+          <div className="footer-bottom">
+            <Text>© 2024 IGotSofa. All rights reserved.</Text>
+          </div>
+        </Footer>
+      );
+
     useEffect(() => {
         fetchUserData(); 
     }, []);
@@ -124,6 +158,19 @@ const UserLayout: React.FC = () => {
                                     <span>แจ้งเตือนการเคลม</span>
                                 </Link>
                             </Menu.Item>
+                            <Menu.Item key="home" onClick={() => setCurrentPage("home")}>
+                                <Link to="/home">
+                                    <CheckCircleOutlined   />
+                                    <span>home</span>
+                                </Link>
+                            </Menu.Item>
+                            <Menu.Item key="cart" onClick={() => setCurrentPage("cart")}>
+                                <Link to="/cart">
+                                    <CheckCircleOutlined   />
+                                    <span>cart</span>
+                                </Link>
+                            </Menu.Item>
+                           
                         </Menu>
                     </div>
                     <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
@@ -161,13 +208,14 @@ const UserLayout: React.FC = () => {
 
                             <Route path="/historyclaim" element={<HisCaim />} />
                             <Route path="/claimrequest" element={<Claimrequest />} />
+                            
+                            <Route path="/home" element={<HomePage />} />
+                            <Route path="/cart" element={<CartPage />} />
+                            
                         </Routes>
                     </div>
                 </Content>
-
-                <Footer style={{ textAlign: "center" }}>
-                    IGOTSOFAR 555
-                </Footer>
+                <AppFooter />
             </Layout>
         </Layout>
     );
