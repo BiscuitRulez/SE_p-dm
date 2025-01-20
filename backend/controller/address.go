@@ -85,7 +85,7 @@ func GetAddressesByUserId(c *gin.Context) {
 }
 
 
-func UpdateTagAddresss(c *gin.Context) {
+func UpdateAddressByID(c *gin.Context) {
 	var address entity.Address
  
 	AddressID := c.Param("id")

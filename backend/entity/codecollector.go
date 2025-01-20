@@ -17,6 +17,6 @@ type CodeCollectors struct {
 
 	Code		*Codes	`gorm:"foreignKey:code_id" json:"code"`
 
-	Order []Order `gorm:"foreignKey:CodeCollectID"`
+
 
 }

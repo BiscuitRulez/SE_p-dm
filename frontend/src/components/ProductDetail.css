@@ -1,0 +1,90 @@
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.product-image-card {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-image-card img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.product-image-card img:hover {
+    transform: scale(1.05);
+}
+
+.product-details-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shipping-info {
+    background-color: #f8f8f8;
+    border: 1px solid #e8e8e8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page-container {
+        padding: 16px;
+    }
+
+    .product-image-card,
+    .product-details-card {
+        margin-bottom: 16px;
+    }
+
+    .ant-space {
+        gap: 12px !important;
+    }
+}
+
+/* Loading State */
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+/* Error State */
+.error-alert {
+    max-width: 600px;
+    margin: 24px auto;
+}
+
+/* Animations */
+.ant-btn-primary {
+    transition: all 0.3s ease;
+}
+
+.ant-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(24, 144, 255, 0.35);
+}
+
+/* Stock Status */
+.ant-tag {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Price */
+.ant-typography-success {
+    color: #52c41a !important;
+}
+
+/* Reviews Section */
+.reviews-section {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #f0f0f0;
+}

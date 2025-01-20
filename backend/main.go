@@ -1,15 +1,19 @@
 package main
 
 import (
+	"os"
+
+	"log"
+
 	"net/http"
 
 	"backendproject/controller"
 
 	"github.com/gin-gonic/gin"
 
-	payment `backendproject/controller/payment`
+	payment "backendproject/controller/payment"
 
-	claim `backendproject/controller/claim`
+	claim "backendproject/controller/claim"
 
 	"backendproject/config"
 
@@ -25,6 +29,10 @@ const PORT = "8000"
 
 func main() {
 
+	if _, err := os.Stat("uploads"); os.IsNotExist(err) {
+		os.Mkdir("uploads", 0755)
+	}
+
 	// open connection database
 
 	config.ConnectionDB()
@@ -34,6 +42,14 @@ func main() {
 	config.SetupDatabase()
 
 	r := gin.Default()
+
+	r.Static("/uploads", "./uploads")
+
+	if _, err := os.Stat("uploads"); os.IsNotExist(err) {
+		if err := os.MkdirAll("uploads", 0755); err != nil {
+			log.Fatal("Failed to create uploads directory:", err)
+		}
+	}
 
 	r.Use(CORSMiddleware())
 
@@ -46,42 +62,44 @@ func main() {
 	r.POST("/signin", user.SignIn)
 
 	router := r.Group("/")
-		r.GET("/payments", payment.GetPayments)
-		r.GET("/payments/:id", payment.GetPaymentByID)
-		r.POST("/payments/:id", payment.CreatePayment)
-		r.PUT("/payments/:id", payment.UpdatePaymentByID)
-		r.DELETE("/payments/:id", payment.DeletePayment)
+	router.GET("/payments", payment.GetPayments)
+	router.GET("/payments/:id", payment.GetPaymentByID)
+	router.POST("/payments/:id", payment.CreatePayment)
+	router.PUT("/payments/:id", payment.UpdatePaymentByID)
+	router.DELETE("/payments/:id", payment.DeletePayment)
 
-		r.GET("/paymentStatus", payment.GetPaymentStatus)
+	router.GET("/paymentStatus", payment.GetPaymentStatus)
 
-		r.GET("/paymentMethod", payment.GetPaymentMethod)
+	router.GET("/paymentMethod", payment.GetPaymentMethod)
 
 
 		r.POST("/history", controller.CreateHistory)
 		r.GET("/history", controller.ListHistory)
 		r.GET("/history/:id", controller.ListHistoryByID)
 
-		r.GET("/claim", claim.GetClaims)
-		r.GET("/claim/:id", claim.GetClaimByID)
-		r.POST("/claim/:id", claim.CreateClaim)
-		r.PUT("/claim/:id", claim.UpdateClaimByID)
-		r.DELETE("/claim/:id", claim.DeleteClaim)
+		r.POST("/historyDetail", controller.CreateHistoryDetail)
+		r.GET("/historyDetail", controller.ListHistoryDetail)
+		r.GET("/historyDetail/:id", controller.ListHistoryDetailByID)
 
-		r.GET("/claimStatus", claim.GetClaimStatus)
+	router.GET("/claim", claim.GetClaims)
+	router.GET("/claim/:id", claim.GetClaimByID)
+	router.POST("/claim/:id", claim.CreateClaim)
+	router.PUT("/claim/:id", claim.UpdateClaimByID)
+	router.DELETE("/claim/:id", claim.DeleteClaim)
+
+	router.GET("/claimStatus", claim.GetClaimStatus)
 
 		r.GET("/problem", claim.GetProblem)
 
-
-		router.GET("/codes", codes.GetAll) // ดึงข้อมูล Codes ทั้งหมด
-		router.GET("/codes/:id", codes.GetCodeById)
-		router.POST("/codes", codes.CreateCode)    // สร้าง Code ใหม่
-		router.PUT("/codes/:id", codes.UpdateCode) // อัปเดต Code ตาม ID
-		router.PUT("/code-collect/:id", codes.UpdateCodeAfterCollect)
-		router.DELETE("/codes/:id", codes.DeleteCode)
-		router.POST("/code-collect/:userId/:codeId", codes.AddCodeToCollect)
-		router.GET("/code-collect/:userId", codes.GetCollectedCodes)
-		router.GET("/show-collect/:userId", codes.GetCollectedCodesToShow)
-
+	router.GET("/codes", codes.GetAll) // ดึงข้อมูล Codes ทั้งหมด
+	router.GET("/codes/:id", codes.GetCodeById)
+	router.POST("/codes", codes.CreateCode)    // สร้าง Code ใหม่
+	router.PUT("/codes/:id", codes.UpdateCode) // อัปเดต Code ตาม ID
+	router.PUT("/code-collect/:id", codes.UpdateCodeAfterCollect)
+	router.DELETE("/codes/:id", codes.DeleteCode)
+	router.POST("/code-collect/:userId/:codeId", codes.AddCodeToCollect)
+	router.GET("/code-collect/:userId", codes.GetCollectedCodes)
+	router.GET("/show-collect/:userId", codes.GetCollectedCodesToShow)
 
 	{
 
@@ -99,7 +117,6 @@ func main() {
 		// router.GET("/code-collect/:userId", codes.GetCollectedCodes)
 		// router.GET("/show-collect/:userId", codes.GetCollectedCodesToShow)
 
-
 		router.PUT("/user/:id", user.Update)
 		router.GET("/users", user.GetAll)
 		router.GET("/user/:id", user.Get)
@@ -107,7 +124,67 @@ func main() {
 
 		router.POST("/address", controller.AddAddressController)
 		router.GET("/address/:id", controller.GetAddressesByUserId)
+		router.GET("/address", controller.GetAllAddress)
+		router.PUT("/address/:id", controller.UpdateAddressByID)
+		router.DELETE("/address/:id", controller.DeleteAddress)
 
+		router.GET("/catagory", controller.GetAllCatagory)
+		router.GET("/catagory/:id", controller.GetCatagoryByID)
+		router.POST("/catagory/:id", controller.CreateCatagory)
+		router.PUT("/catagory/:id", controller.UpdateCatagoryByID)
+		router.DELETE("/catagory/:id", controller.DeleteCatagory)
+
+		// Product routes
+		router.GET("/product", controller.GetAllProduct)
+		router.GET("/product/:id", controller.GetProductByID)
+		router.POST("/product", controller.CreateProduct)
+		router.PUT("/product/:id", controller.UpdateProductByID)
+		router.DELETE("/product/:id", controller.DeleteProduct)
+		// Cart routes
+		router.POST("/cart", controller.AddToCart)
+		router.GET("/cart", controller.GetCart)
+		router.PUT("/cart/:id", controller.UpdateCartItem)
+
+		router.GET("/stocks", controller.GetStocksByProductID)
+		router.POST("/stock", controller.Create)
+		router.PUT("/stock/:id", controller.Update)
+		router.GET("/stock", controller.GetAll)
+		router.GET("/stock/:id", controller.Get)
+		router.DELETE("/stock/:id", controller.Delete)
+
+		router.GET("/:userId", controller.GetPointsByUserID)
+		router.POST("/redeem", controller.RedeemPoints)
+		router.POST("/earn", controller.EarnPoints)
+		router.PUT("/:pointId", controller.UpdatePoints)
+		router.DELETE("/:pointId", controller.DeletePoints)
+
+		// Order routes
+		router.POST("/orders", controller.CreateOrder)
+		router.GET("/orders", controller.GetOrders)
+
+		// Review routes
+		router.POST("/reviews", controller.CreateReview)
+		router.GET("/products/:id/reviews", controller.GetProductReviews)
+		router.GET("/products/:id/reviews/analytics", controller.GetReviewAnalytics)
+		router.POST("/reviews/:id/vote", controller.VoteHelpful)
+		router.POST("/reviews/upload", controller.UploadImage)
+
+		router.GET("/shippingstatus", controller.GetAllShippingStatus)
+		router.GET("/shippingstatus/:id", controller.GetShippingStatusByID)
+		router.PUT("/shippingstatus/:id", controller.UpdateShippingStatusByID)
+		router.DELETE("/shippingstatus/:id", controller.DeleteShippingStatus)
+
+		router.GET("/shipping", controller.GetAllShipping)
+		router.GET("/shipping/:id", controller.GetShippingByID)
+		router.POST("/shipping/:id", controller.CreateShipping)
+		router.PUT("/shipping/:id", controller.UpdateShippingByID)
+		router.DELETE("/shipping/:id", controller.DeleteShipping)
+
+		router.GET("/tags", controller.GetAllTags)
+		router.GET("/tags/:id", controller.GetTagsByID)
+		router.POST("/tags/:id", controller.CreateTags)
+		router.PUT("/tags/:id", controller.UpdateTagsByID)
+		router.DELETE("/tags/:id", controller.DeleteTags)
 
 		//Payment Route
 		// router.GET("/payments", payment.GetPayments)
@@ -120,76 +197,7 @@ func main() {
 
 		// router.GET("/paymentMethod", payment.GetPaymentMethod)
 
-
 		// Cart Routes
-		router.GET("/carts", controller.GetAll)
-		router.GET("/cart/:id", controller.Get)
-		router.POST("/cart", controller.Create)
-		router.PUT("/cart/:id", controller.Update)
-		router.DELETE("/cart/:id", controller.Delete)
-
-		// Product Routes
-		router.GET("/products", controller.GetAll)
-		router.GET("/product/:id", controller.Get)
-		router.POST("/product", controller.Create)
-		router.PUT("/product/:id", controller.Update)
-		router.DELETE("/product/:id", controller.Delete)
-
-		// Category Routes
-		router.GET("/categories", controller.GetAll)
-		router.GET("/category/:id", controller.Get)
-		router.POST("/category", controller.Create)
-		router.PUT("/category/:id", controller.Update)
-		router.DELETE("/category/:id", controller.Delete)
-
-		// Tag Routes
-		router.GET("/tags", controller.GetAll)
-		router.GET("/tag/:id", controller.Get)
-		router.POST("/tag", controller.Create)
-		router.PUT("/tag/:id", controller.Update)
-		router.DELETE("/tag/:id", controller.Delete)
-
-		// Order Routes
-		router.GET("/orders", controller.GetAll)
-		router.GET("/order/:id", controller.Get)
-		router.POST("/order", controller.Create)
-		router.PUT("/order/:id", controller.Update)
-		router.DELETE("/order/:id", controller.Delete)
-
-		// Stock Routes
-		router.GET("/stocks", controller.GetAll)
-		router.GET("/stock/:id", controller.Get)
-		router.POST("/stock", controller.Create)
-		router.PUT("/stock/:id", controller.Update)
-		router.DELETE("/stock/:id", controller.Delete)
-
-		// OrderItem Routes
-		router.GET("/orderitems", controller.GetAll)
-		router.GET("/orderitem/:id", controller.Get)
-		router.POST("/orderitem", controller.Create)
-		router.PUT("/orderitem/:id", controller.Update)
-		router.DELETE("/orderitem/:id", controller.Delete)
-
-		// ProductTags Routes
-		router.GET("/producttags", controller.GetAll)
-		router.GET("/producttag/:id", controller.Get)
-		router.POST("/producttag", controller.Create)
-		router.PUT("/producttag/:id", controller.Update)
-		router.DELETE("/producttag/:id", controller.Delete)
-
-		// Review Routes
-		router.GET("/reviews", controller.GetAll)
-		router.GET("/review/:id", controller.Get)
-		router.POST("/review", controller.Create)
-		router.PUT("/review/:id", controller.Update)
-		router.DELETE("/review/:id", controller.Delete)
-
-		// Reviewlikes Routes
-		router.GET("/reviewlikes", controller.GetAll)
-		router.GET("/reviewlike/:id", controller.Get)
-		router.POST("/reviewlike", controller.Create)
-		router.PUT("/reviewlike/:id", controller.Update)
-		router.DELETE("/reviewlike/:id", controller.Delete)
 
 		router.GET("/admins", user.GetAdmin)
 

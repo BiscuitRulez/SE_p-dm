@@ -1,18 +1,12 @@
 package entity
 
-
 import (
-
-   "gorm.io/gorm"
-
+	"gorm.io/gorm"
 )
 
 type Catagory struct {
+	gorm.Model
+	Name   string `json:"Name"`
 
-   gorm.Model
-
-   ID        uint     `json:"id"`
-
-   Name string    `json:"name"`
-
+	Product []Product `gorm:"foreignKey:CatagoryID"`
 }

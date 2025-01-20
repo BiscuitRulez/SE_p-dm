@@ -23,6 +23,16 @@ const AdminCreate = Loadable(lazy(() => import("../pages/admin/palm/add/create")
 
 const AdminEdit = Loadable(lazy(() => import("../pages/admin/palm/add/edit")));
 
+const Stock2 = Loadable(lazy(() => import("../pages/stock/Stock2")));
+
+const Stock3 = Loadable(lazy(() => import("../pages/stock/Stock3")));
+
+const Stock4 = Loadable(lazy(() => import("../pages/stock/Stock4")));
+
+const AddProduct = Loadable(lazy(() => import("../pages/product/Create/AddProduct")));
+
+const EditProduct = Loadable(lazy(() => import("../pages/product/Edit/EditProduct")));
+
 
 
 
@@ -68,6 +78,34 @@ const AdminRoutes = (isLoggedIn: boolean): RouteObject => {
                 element: <AdminEdit />,
               },
             ],
+          },
+
+          {
+            path: "/Stock2",
+            children: [
+              {
+                path: "/Stock2",
+                element: <Stock2 />,
+              },
+              {
+                path: "/Stock2/Stock3",
+                element: <Stock3 />,
+              },
+              {
+                path: "/Stock2/Stock4",
+                element: <Stock4 />,
+              },
+            ],
+          },
+
+          {
+            path: "/product",
+            element: <AddProduct />,
+          },
+
+          {
+            path: "/proedit",
+            element: <EditProduct />,
           },
       ],
     };

@@ -1,0 +1,63 @@
+.product-grid2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* สร้าง 2 คอลัมน์ */
+    gap: 20px; /* ระยะห่างระหว่างการ์ด */
+    margin-top: 20px; /* ระยะห่างจากด้านบน */
+  }
+  
+  .product-card2 {
+    display: flex; /* จัดวางเนื้อหาแบบ Flexbox */
+    align-items: center; /* จัดให้อยู่กึ่งกลางแนวแกน Y */
+    gap: 20px; /* ระยะห่างระหว่างรูปภาพกับข้อความ */
+    background-color: #001529; /* สีพื้นหลังของการ์ด */
+    width: 500px; /* ความกว้าง */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-card-img2 {
+    width: 30%; /* กำหนดขนาดความกว้างรูปภาพ */
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .product-content2 {
+    display: flex;
+    flex-direction: column; /* จัดเรียงเนื้อหาในแนวตั้ง */
+    justify-content: flex-start; /* เน้นเนื้อหาที่จุดเริ่มต้น */
+  }
+  
+  .product-title2 {
+    font-size: 1.5rem; /* ขนาดตัวอักษรชื่อสินค้า */
+    font-weight: bold;
+    margin-bottom: 10px; /* ระยะห่างระหว่างชื่อกับคำอธิบาย */
+    color: #ffffff;
+  }
+  
+  .product-description2 {
+    font-size: 1rem; /* ขนาดตัวอักษรรายละเอียด */
+    color: #c0c0c0;
+    line-height: 1.6;
+  }
+  
+  .title {
+    font-weight: bold;
+    margin-left: 0;
+    color: #000000;
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 100px;  /* เลื่อนข้อความลงจากด้านบน */
+  }
+  
+  .back-button {
+    position: absolute;
+    top: 100px;
+    right: 1400px;
+  }
+  
+  .back-img {
+    width: 50px;
+    height: auto;
+  }
+  

@@ -22,7 +22,7 @@ func GetAllTags(c *gin.Context) {
 }
 
 
-func GetlTagsByID(c *gin.Context) {
+func GetTagsByID(c *gin.Context) {
 	var tag entity.Tags
 	id := c.Param("id")
 
@@ -36,7 +36,36 @@ func GetlTagsByID(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": tag})
 }
 
-func UpdateTags(c *gin.Context) {
+func CreateTags(c *gin.Context) {
+
+    var newTags entity.Tags // สร้างตัวแปรสำหรับเก็บข้อมูล Code ใหม่
+
+    // ผูก JSON ที่ส่งมาจาก Request Body กับตัวแปร newCode
+    if err := c.ShouldBindJSON(&newTags); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+        return
+    }
+
+    // เชื่อมต่อกับฐานข้อมูล
+    db := config.DB()
+
+	nt := entity.Tags{
+
+		Tag_Name:	newTags.Tag_Name,
+
+	}
+
+    // บันทึกข้อมูลลงในฐานข้อมูล
+    if err := db.Create(&nt).Error; err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+        return
+    }
+
+    // ส่งข้อมูลที่สร้างสำเร็จกลับไป
+    c.JSON(http.StatusCreated, gin.H {"message": "Tag created successfully","tag": nt})
+}
+
+func UpdateTagsByID(c *gin.Context) {
 	var tag entity.Tags
  
 	TagsID := c.Param("id")

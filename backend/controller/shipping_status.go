@@ -36,7 +36,7 @@ func GetShippingStatusByID(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": shippingstatus})
 }
 
-func UpdateShippingStatus(c *gin.Context) {
+func UpdateShippingStatusByID(c *gin.Context) {
 	var shippingstatus entity.ShippingStatus
  
 	ShippingStatusID := c.Param("id")

@@ -1,0 +1,35 @@
+.order-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  background-color: #f9f9f9;
+}
+
+.order-header {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+
+.order-header h2 {
+  margin: 0;
+}
+
+.order-items {
+  padding: 8px 0;
+}
+
+.order-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 24px;
+}

@@ -1,0 +1,53 @@
+.product-card1 {
+    background-color: #FFBF65; /* สีส้ม */
+    border-radius: 10px; /* มุมโค้ง */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* เงา */
+    width: 200px; /* ความกว้าง */
+    padding: 15px; /* ระยะห่างภายใน */
+    margin: 10px; /* ระยะห่างระหว่างการ์ด */
+    text-align: left;
+    position: relative;
+  }
+  
+  .product-image1 {
+    width: 100%;
+    height: 180px; /* ความสูงของภาพ */
+    object-fit: cover; /* ปรับภาพให้พอดีกับกรอบ */
+  }
+  
+  .product-content1 {
+    padding: 10px 15px;
+  }
+  
+  .product-title1 {
+    font-size: 16px;
+    margin: 5px 0;
+    font-weight: bold;
+    color: #000000;
+  }
+  
+  .product-price1 {
+    font-size: 14px;
+    color: #000;
+    font-weight: bold;
+  }
+  
+  .product-brand1 {
+    font-size: 12px;
+    color: #000000;
+  }
+  
+  .product-cart-icon1 {
+    position: absolute;
+    top: 0px;
+    right: -220px;
+    transform: scale(0.04); /* ลดขนาดลง 80% */
+    transform-origin: center;
+    color: hsl(0, 0%, 0%);
+    cursor: pointer;
+  }
+  
+  
+  .product-cart-icon1:hover {
+    color: #000000;
+  }

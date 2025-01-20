@@ -1,0 +1,170 @@
+.product-card3 {
+    display: flex; /* จัดวางเนื้อหาแบบ Flexbox */
+    align-items: center; /* จัดให้อยู่กึ่งกลางแนวแกน Y */
+    gap: 20px; /* ระยะห่างระหว่างรูปภาพกับข้อความ */
+    background-color: #001529; /* สีพื้นหลังของการ์ด */
+    width: 100%; /* เปลี่ยนจากขนาดคงที่เป็น 100% */
+    max-width: 700px; /* กำหนดความกว้างสูงสุด */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    top: 120px;
+    right: 0px;
+    margin: auto; /* จัดให้อยู่กลางหน้าจอ */
+}
+
+.product-card-img3 {
+    width: 20%; /* กำหนดขนาดความกว้างรูปภาพ */
+    height: auto;
+    border-radius: 5px;
+}
+
+.product-card .content3 {
+    flex: 1; /* ให้เนื้อหาข้อความขยายพื้นที่เท่าที่เหลืออยู่ */
+    color: #333;
+}
+
+.product-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.product-card p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-decoration: none;
+}
+
+.product-content3 {
+    display: flex;
+    flex-direction: column; /* จัดเรียงเนื้อหาในแนวตั้ง */
+    justify-content: flex-start; /* เน้นเนื้อหาที่จุดเริ่มต้น */
+}
+
+.product-title3 {
+    font-size: 1.5rem; /* ขนาดตัวอักษรชื่อสินค้า */
+    font-weight: bold;
+    margin-bottom: 10px; /* ระยะห่างระหว่างชื่อกับคำอธิบาย */
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.product-description3 {
+    font-size: 1rem; /* ขนาดตัวอักษรรายละเอียด */
+    color: #cecccc;
+    line-height: 1.6;
+    text-decoration: none;
+}
+
+/* จัดตำแหน่งการ์ด */
+.card-container4 {
+    display: flex;
+    flex-wrap: wrap; /* รองรับการจัดเรียงหลายบรรทัด */
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.card4 {
+    background-color: #001529; /* สีพื้นหลัง */
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+    width: 100%; /* ใช้ความกว้างเต็มในจอเล็ก */
+    max-width: 200px; /* ความกว้างสูงสุด */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    top: 150px;
+    right: 0px;
+}
+
+/* ภาพบนการ์ด */
+.card-image4 {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* ชื่อสีด้านล่าง */
+.card-title4 {
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* ปุ่มแก้ไขและลบ */
+.card-actions4 button {
+    padding: 5px 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background-color: #f4f4f4 ;
+    color: rgb(0, 0, 0);
+}
+
+.delete-btn {
+    background-color: #f44336;
+    color: rgb(255, 255, 255);
+}
+
+/* การ์ดเพิ่มภาพ */
+.add-card4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 270px;
+}
+
+.add-image4 {
+    width: 100%;
+    height: 100%;
+    border: 2px dashed #ffffff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.textno {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px; /* ระยะห่างระหว่างชื่อกับคำอธิบาย */
+    color: #000000;
+    text-decoration: none;
+    position: relative;
+    top: 150px;
+    right: 55px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-card3 {
+        flex-direction: column; /* จัดเรียงเนื้อหาในแนวตั้ง */
+        align-items: flex-start; /* จัดให้อยู่ชิดซ้าย */
+        max-width: 100%;
+    }
+
+    .product-card-img3 {
+        width: 100%; /* รูปภาพเต็มความกว้าง */
+        margin-bottom: 10px; /* เพิ่มระยะห่างจากข้อความ */
+    }
+
+    .card4 {
+        max-width: 100%; /* ให้การ์ดใช้ความกว้างเต็มในจอเล็ก */
+    }
+
+    .card-container4 {
+        gap: 10px; /* ลดระยะห่างระหว่างการ์ด */
+    }
+}

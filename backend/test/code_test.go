@@ -1,4 +1,4 @@
-package test
+package unit
 
 import (
 	"backendproject/entity"
@@ -73,7 +73,7 @@ t.Run(`Discount is required`, func(t *testing.T) {
 	})
 }
 
-func TestQuantity(t *testing.T) {
+func TestQuantityCode(t *testing.T) {
 	g := NewGomegaWithT(t)
 	t.Run(`Quantity is required`, func(t *testing.T) {
 		code := entity.Codes{

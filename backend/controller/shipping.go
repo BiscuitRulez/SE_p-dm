@@ -21,7 +21,7 @@ func GetAllShipping(c *gin.Context) {
     c.JSON(http.StatusOK, gin.H{"shippings": shipping})
 }
 
-func GetlShippingByID(c *gin.Context) {
+func GetShippingByID(c *gin.Context) {
 	var shipping entity.Shipping
 	id := c.Param("id")
 
@@ -35,7 +35,37 @@ func GetlShippingByID(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": shipping})
 }
 
-func UpdateTagShipping(c *gin.Context) {
+func CreateShipping(c *gin.Context) {
+
+    var newShipping entity.Shipping // สร้างตัวแปรสำหรับเก็บข้อมูล Code ใหม่
+
+    // ผูก JSON ที่ส่งมาจาก Request Body กับตัวแปร newCode
+    if err := c.ShouldBindJSON(&newShipping); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+        return
+    }
+
+    // เชื่อมต่อกับฐานข้อมูล
+    db := config.DB()
+
+	ns := entity.Shipping{
+
+		Name:	newShipping.Name,
+		Fee:	newShipping.Fee,
+
+	}
+
+    // บันทึกข้อมูลลงในฐานข้อมูล
+    if err := db.Create(&ns).Error; err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+        return
+    }
+
+    // ส่งข้อมูลที่สร้างสำเร็จกลับไป
+    c.JSON(http.StatusCreated, gin.H {"message": "Shipping created successfully","shipping": ns})
+}
+
+func UpdateShippingByID(c *gin.Context) {
 	var shipping entity.Shipping
  
 	ShippingID := c.Param("id")

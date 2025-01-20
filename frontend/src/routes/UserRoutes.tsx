@@ -6,8 +6,6 @@ import Loadable from "../components/third-party/Loadable";
 
 import UserLayout from "../layout/UserLayout";
 
-// import ClaimNotiUser from "../pages/claim/ClaimNotiUser";
-
 
 const MainPages = Loadable(lazy(() => import("../pages/authentication/Login")));
 
@@ -39,48 +37,49 @@ const UserRoutes = (isLoggedIn: boolean): RouteObject => {
     element: isLoggedIn ? <UserLayout /> : <MainPages />,
     children: [
       {
+        index: true, // Default path
+        element: <Dashboard />, // กำหนดเส้นทางเริ่มต้น
+      },
+      {
         path: "/dashboard",
         element: <Dashboard />,
       },
-
       {
         path: "/customer",
         children: [
           {
-            path: "/customer",
+            path: "",
             element: <Customer />,
           },
           {
-            path: "/customer/create",
+            path: "create",
             element: <CreateCustomer />,
           },
           {
-            path: "/customer/edit/:id",
+            path: "edit/:id",
             element: <EditCustomer />,
           },
         ],
       },
-
       {
         path: "/code",
         element: <UserCodes />,
       },
-
       {
         path: "/profile",
         children: [
           {
-            path: "/profile",
+            path: "",
             element: <ProfileEdit />,
           },
           {
-            path: "/profile/address",
+            path: "address",
             element: <AddAddressPage />,
-          }
-        ]
+          },
+        ],
       },
       {
-        path: "/payment", 
+        path: "/payment",
         element: <PaymentPage />,
       },
       {
@@ -91,9 +90,23 @@ const UserRoutes = (isLoggedIn: boolean): RouteObject => {
         path: "/claimnotiuser", 
         element: <ClaimNotiUser />,
       },
+      {
+        path: "/home",
+        element: <HomePage />
+      },
+      {
+        path: "/cart",
+        element: <CartPage />
+      },
+      {
+        path: "/tracking",
+        element: <Tracking />
+      },
+
     ],
   };
 };
+
 
 
 

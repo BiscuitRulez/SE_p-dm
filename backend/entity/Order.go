@@ -1,48 +1,41 @@
+// entity/order.go
 package entity
 
-
 import (
-
-   "time"
-
-   "gorm.io/gorm"
-
+    "gorm.io/gorm"
+    "time"
+    "fmt"
 )
 
 type Order struct {
-
-   gorm.Model
-
-   ID        uint     `json:"id"`
-
-   OrderDate     time.Time    `json:"order_date"`
-
-   Status string    `json:"status"`
-
-   TotalPrice  float32    `json:"total_price"`
-
-   UserID  uint   
-
-   User    Users      `gorm:"foreignKey:UserID"`
-
-   PaymentID  uint    
-
-   //Payment    *Payment  `gorm:"foreignKey: id" json:"payment_id"`
-
-   CodeCollectID  uint      `json:"code_collect_id"`
-
-   //CodeCollect    *CodeCollect  `gorm:"foreignKey: id" json:"code_collect_id"`
-
-   ShippingID  uint      `json:"shipping_id"`
-
-   //Shipping    *Shipping  `gorm:"foreignKey: id" json:"shipping_id"`
-
-   OrderItems    []OrderItem `gorm:"foreignKey:OrderID"`
-	Claim         []Claim     `gorm:"foreignKey:OrderID"`
-	History       []History   `gorm:"foreignKey:OrderID"`
+    gorm.Model
+    UserID     string      `json:"user_id" valid:"required~user_id is required"`
+    // Modified validation message to match test expectation
+    TotalPrice float64     `json:"total_price" valid:"total price must be positive"` 
+    Status     string      `json:"status" gorm:"default:pending" valid:"status must be valid"`
+    OrderDate  time.Time   `json:"order_date" `
+    
+    OrderItems []OrderItem `json:"order_items" gorm:"foreignKey:OrderID"`
 }
 
+// Validate validates the Order struct
+func (o *Order) Validate() error {
+    if o.TotalPrice <= 0 {
+        return fmt.Errorf("total price must be positive")
+    }
+    if o.UserID == "" {
+        return fmt.Errorf("user_id is required")
+    }
+    return nil
+}
 
-
-
-
+// BeforeCreate hook to set order date if not set
+func (o *Order) BeforeCreate(tx *gorm.DB) error {
+    if o.OrderDate.IsZero() {
+        o.OrderDate = time.Now()
+    }
+    if o.Status == "" {
+        o.Status = "Pending"
+    }
+    return nil
+}

@@ -1,0 +1,192 @@
+.product-card5 {
+    display: flex; /* จัดวางเนื้อหาแบบ Flexbox */
+    align-items: center; /* จัดให้อยู่กึ่งกลางแนวแกน Y */
+    gap: 20px; /* ระยะห่างระหว่างรูปภาพกับข้อความ */
+    background-color: #001529; /* สีพื้นหลังของการ์ด */
+    width: 700px; /* ความกว้าง */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+}
+
+.product-card-img5 {
+    width: 20%; /* กำหนดขนาดความกว้างรูปภาพ */
+    height: auto;
+    border-radius: 5px;
+}
+
+.product-card .content5 {
+    flex: 1; /* ให้เนื้อหาข้อความขยายพื้นที่เท่าที่เหลืออยู่ */
+    color: #333;
+}
+
+.product-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+/* เพิ่ม/แก้ไขรายการสินค้า */
+h1 {
+  font-size: 30px;  /* ขนาดตัวอักษร */
+  font-weight: bold;  /* ทำตัวหนา */
+  color: #000000;  /* สีตัวอักษร */
+  margin-top: 80px;
+  margin-left: 0px;
+}
+
+.product-card p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-decoration: none;
+}
+
+.product-content5 {
+    display: flex;
+    flex-direction: column; /* จัดเรียงเนื้อหาในแนวตั้ง */
+    justify-content: flex-start; /* เน้นเนื้อหาที่จุดเริ่มต้น */
+}
+
+.product-title5 {
+    font-size: 1.5rem; /* ขนาดตัวอักษรชื่อสินค้า */
+    font-weight: bold;
+    margin-bottom: 10px; /* ระยะห่างระหว่างชื่อกับคำอธิบาย */
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.product-description5 {
+    font-size: 1rem; /* ขนาดตัวอักษรรายละเอียด */
+    color: #c7c6c6;
+    line-height: 1.6;
+    text-decoration: none;
+}
+
+
+/* คอนเทนเนอร์หลัก */
+.form-container {
+    display: flex;
+    background-color: #001529; /* สีพื้นหลัง */
+    border-radius: 15px;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    width: 550px; /* ความกว้าง */
+    position: relative;
+    top: 20px;
+    right: -80px;
+    
+  }
+  
+  /* ส่วนป้อนข้อมูล */
+  .form-section {
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+  }
+  
+  label {
+    font-weight: bold;
+    color: #ffffff;
+    margin: 5px 0;
+  }
+  
+  .input-field{
+    width: 90%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* อัปโหลดรูปภาพ */
+  .image-upload {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .upload-box {
+    background-color: #e9e9e9;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    width: 150px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .upload-icon {
+    font-size: 48px;
+    color: #888;
+  }
+  
+  /* ปุ่ม */
+  .button-section {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    position: relative;
+    top: 160px;
+    right: 340px;
+  }
+  
+  button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .cancel-btn {
+    background-color: #f44336;
+  }
+  
+  .save-btn {
+    background-color: #001529;
+  }
+
+
+
+  /* กล่องควบคุมจำนวน */
+.quantity-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* สร้าง 2 คอลัมน์ */
+    gap: 20px; /* ระยะห่างระหว่างการ์ด */
+    margin-top: 0px; /* ระยะห่างจากด้านบน */
+  }
+  
+  .quantity-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 150px;
+  }
+  
+  .quantity-btn {
+    background-color: #4da8da;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .quantity-btn:hover {
+    background-color: #4682b4;
+  }
+  
+  .quantity-value {
+    width: 30px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  

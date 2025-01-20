@@ -35,74 +35,52 @@ function CodeEdit() {
   const handleCancel = () => {
     navigate(-1);
   };
+
   const onChange: UploadProps["onChange"] = ({ fileList: newFileList }) => {
-    setFileList(newFileList); // อัปเดตสถานะ fileList
-
-    // หากต้องการเก็บ Base64 ของรูปภาพใหม่
-    if (newFileList.length > 0 && newFileList[0].originFileObj) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        form.setFieldValue("code_picture", reader.result); // เก็บ Base64 ในฟอร์ม
-      };
-      reader.readAsDataURL(newFileList[0].originFileObj);
-    }
+    setFileList(newFileList);
   };
-
 
   const onFinish = async (values: CodeInterface) => {
     values.ID = code?.ID;
-    values.quantity = Number(values.quantity || 0);
-    values.discount = Number(values.discount || 0);
-    values.minimum = Number(values.minimum || 0);
-
-    if (fileList.length > 0 && fileList[0].originFileObj) {
-      const reader = new FileReader();
-      reader.onload = async () => {
-        values.code_picture = reader.result as string; // เก็บ Base64
-        let res = await UpdateCode(values);
-        if (res.status) {
-          messageApi.open({
-            type: "success",
-            content: res.message,
-          });
-          setTimeout(() => navigate("/code"), 2000);
-        } else {
-          messageApi.open({
-            type: "error",
-            content: res.message,
-          });
-        }
-      };
-      reader.readAsDataURL(fileList[0].originFileObj);
+    if (values.quantity !== undefined && values.discount !== undefined && values.minimum !== undefined) {
+      values.quantity = Number(values.quantity);  // แปลงเป็นตัวเลข
+      values.discount = Number(values.discount);  // แปลงเป็นตัวเลข
+      values.minimum = Number(values.minimum);  // แปลงเป็นตัวเลข
     } else {
-      // กรณีไม่มีการเปลี่ยนรูป
-      let res = await UpdateCode(values);
-      if (res.status) {
-        messageApi.open({
-          type: "success",
-          content: res.message,
-        });
-        setTimeout(() => navigate("/code"), 2000);
-      } else {
-        messageApi.open({
-          type: "error",
-          content: res.message,
-        });
-      }
+      // กำหนดค่า default ถ้าค่าบางอย่างเป็น undefined
+      values.quantity = 0;
+      values.discount = 0;
+      values.minimum = 0;
+    }
+  
+    console.log("song rai ma",values); // ตรวจสอบค่าที่ถูกส่งไป
+    let res = await UpdateCode(values);
+    if (res.status) {
+      messageApi.open({
+        type: "success",
+        content: res.message,
+      });
+      setTimeout(function () {
+        navigate("/code");
+      }, 2000);
+    } else {
+      messageApi.open({
+        type: "error",
+        content: res.message,
+      });
     }
   };
-
 
   const getCodeById = async () => {
     let res = await GetCodesById(Number(id));
     console.log("Response from GetCodesById:", res); // ตรวจสอบโครงสร้างข้อมูล
-
+    
     if (res.status && Array.isArray(res.data) && res.data.length > 0) {
       const codeData = res.data[0]; // เข้าถึงข้อมูลที่ index 0
       setCode(codeData); // เก็บข้อมูลใน state
-
+      
       console.log("Fetched Code Data:", codeData); // ตรวจสอบค่าข้อมูล
-
+      
       // ตั้งค่าให้กับฟอร์ม
       form.setFieldsValue({
         code_topic: codeData.code_topic,
@@ -113,22 +91,21 @@ function CodeEdit() {
         date_start: dayjs(codeData.date_start),
         date_end: dayjs(codeData.date_end),
       });
-
+  
       // ตั้งค่า fileList สำหรับการแสดงรูปภาพเดิม
       setFileList([
         {
           uid: "-1",
           name: "Existing Image",
           status: "done",
-          url: codeData.code_picture, // URL หรือ Base64
+          url: codeData.code_picture, // URL ของรูปภาพหรือ Base64
         },
       ]);
-
     } else {
       console.error("Failed to fetch code or no data available.");
     }
   };
-
+  
 
   useEffect(() => {
     getCodeById(); // เรียกใช้งานฟังก์ชันเพื่อดึงข้อมูล
@@ -136,24 +113,24 @@ function CodeEdit() {
 
   return (
     <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "100vh", // already correct for full viewport height
-        width: "100vw",     // add full viewport width
-        padding: "0",       // remove padding to maximize space
-        background: "white",
-        margin: 0,          // remove any default margins
-        boxSizing: "border-box" // ensure padding and border are included in width/height
-      }}
-    >
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "100vh", // already correct for full viewport height
+          width: "100vw",     // add full viewport width
+          padding: "0",       // remove padding to maximize space
+          background: "white",
+          margin: 0,          // remove any default margins
+          boxSizing: "border-box" // ensure padding and border are included in width/height
+        }}
+      >
       {contextHolder}
       <Card>
         <h2> แก้ไขโค้ดส่วนลด</h2>
         <Divider />
         {/* Make sure form is connected */}
-        <Form
+        <Form 
           name="basic"
           form={form}
           layout="vertical"
@@ -172,13 +149,8 @@ function CodeEdit() {
                     fileList={fileList}
                     onChange={onChange}
                     beforeUpload={(file) => {
-                      // อ่านไฟล์เป็น Base64 และอัปเดตฟอร์ม
-                      const reader = new FileReader();
-                      reader.onload = () => {
-                        form.setFieldValue("code_picture", reader.result); // เก็บ Base64 ในฟอร์ม
-                      };
-                      reader.readAsDataURL(file);
-                      return false; // ป้องกันการอัปโหลดโดยตรง
+                      setFileList([...fileList, file]);
+                      return false;
                     }}
                     maxCount={1}
                     multiple={false}
@@ -189,7 +161,6 @@ function CodeEdit() {
                       <div style={{ marginTop: 8 }}>อัพโหลด</div>
                     </div>
                   </Upload>
-
                 </ImgCrop>
               </Form.Item>
             </Col>
