@@ -20,6 +20,9 @@ type Payment struct {
 
 	PaymentStatusID		uint 			`valid:"required~PaymentStatusID is required"`
 	PaymentStatus   	PaymentStatus	`gorm:"foreignKey:PaymentStatusID"`
+
+	AddressID			uint 			`valid:"required~AddressID is required"`
+	Address   			Address			`gorm:"foreignKey:AddressID"`
 }
 
 

@@ -18,6 +18,7 @@ import (
 	"backendproject/controller/user"
 
 	"backendproject/middlewares"
+	
 )
 
 const PORT = "8000"
@@ -60,10 +61,6 @@ func main() {
 		r.GET("/history", controller.ListHistory)
 		r.GET("/history/:id", controller.ListHistoryByID)
 
-		r.POST("/historyDetail", controller.CreateHistoryDetail)
-		r.GET("/historyDetail", controller.ListHistoryDetail)
-		r.GET("/historyDetail/:id", controller.ListHistoryDetailByID)
-
 		r.GET("/claim", claim.GetClaims)
 		r.GET("/claim/:id", claim.GetClaimByID)
 		r.POST("/claim/:id", claim.CreateClaim)
@@ -73,6 +70,7 @@ func main() {
 		r.GET("/claimStatus", claim.GetClaimStatus)
 
 		r.GET("/problem", claim.GetProblem)
+
 
 		router.GET("/codes", codes.GetAll) // ดึงข้อมูล Codes ทั้งหมด
 		router.GET("/codes/:id", codes.GetCodeById)

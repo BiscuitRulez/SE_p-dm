@@ -15,4 +15,6 @@ type Address struct {
 
 	UserID			uint		`json:"user_id"`
 	User			*Users		`gorm:"foreignKey:user_id" json:"user"`
+
+	Payment 		[]Payment 	`gorm:"foreignKey:AddressID"`
 }

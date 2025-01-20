@@ -16,9 +16,9 @@ import UserCodes from "../../pages/customer/palm/code";
 import ProfileEdit from "../../pages/customer/palm/profile";
 import AddAddressPage from "../../pages/customer/palm/profile/address";
 import PaymentPage from "../../pages/payment/payment";
-import HisCaim from "../../pages/claim/HistoryClaim";
+import History from "../../pages/claim/History";
 
-import Claimrequest from "../../pages/claim/Claim_request";
+import ClaimNotiUser from "../../pages/claim/ClaimNotiUser";
 
 
 const { Header, Content, Footer } = Layout;
@@ -112,14 +112,14 @@ const UserLayout: React.FC = () => {
                                     <span>การชำระเงิน</span>
                                 </Link>
                             </Menu.Item>
-                            <Menu.Item key="historyclaim" onClick={() => setCurrentPage("historyclaim")}>
-                                <Link to="/historyclaim">
+                            <Menu.Item key="history" onClick={() => setCurrentPage("history")}>
+                                <Link to="/history">
                                     <ShoppingCartOutlined  />
                                     <span>ประวัติการสั่งซื้อ</span>
                                 </Link>  
                             </Menu.Item>
-                            <Menu.Item key="claimrequest" onClick={() => setCurrentPage("claimrequest")}>
-                                <Link to="/claimrequest">
+                            <Menu.Item key="claimnotiuser" onClick={() => setCurrentPage("claimnotiuser")}>
+                                <Link to="/claimnotiuser">
                                     <CheckCircleOutlined   />
                                     <span>แจ้งเตือนการเคลม</span>
                                 </Link>
@@ -159,8 +159,8 @@ const UserLayout: React.FC = () => {
                             <Route path="/profile" element={<ProfileEdit />} />
                             <Route path="/profile/address" element={<AddAddressPage />} />
 
-                            <Route path="/historyclaim" element={<HisCaim />} />
-                            <Route path="/claimrequest" element={<Claimrequest />} />
+                            <Route path="/history" element={<History />} />
+                            <Route path="/claimnotiuser" element={<ClaimNotiUser />} />
                         </Routes>
                     </div>
                 </Content>

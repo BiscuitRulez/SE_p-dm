@@ -304,6 +304,56 @@ async function DeletePayment(id: string) {
     .catch((e) => e.response);
 }
 
+//------------------------------------------------------------------------//
+async function GetClaims() {
+  return await axios
+  .get(`${apiUrl}/claim`, requestOptions)
+  .then((res) => res.data)
+  .catch((e) => e.response);
+}
+
+async function GetClaimByID(id: string) {
+return await axios
+  .get(`${apiUrl}/claim/${id}`, requestOptions)
+  .then((res) => res.data)
+  .catch((e) => e.response);
+}
+
+async function CreateClaim(data: any) {
+return await axios
+  .post(`${apiUrl}/claim`, data, requestOptions)
+  .then((res) => res.data)
+  .catch((e) => e.response);
+}
+
+async function UpdateClaimByID(id: string, data: any) {
+return await axios
+  .put(`${apiUrl}/claim/${id}`, data, requestOptions)
+  .then((res) => res.data)
+  .catch((e) => e.response);
+}
+
+async function DeleteClaim(id: string) {
+return await axios
+  .delete(`${apiUrl}/claim/${id}`, requestOptions)
+  .then((res) => res.data)
+  .catch((e) => e.response);
+}
+
+async function GetClaimStatus() {
+return await axios
+  .get(`${apiUrl}/claimStatus`, requestOptions)
+  .then((res) => res.data)
+  .catch((e) => e.response);
+}
+
+async function GetProblems() {
+return await axios
+  .get(`${apiUrl}/problem`, requestOptions)
+  .then((res) => res.data)
+  .catch((e) => e.response);
+}
+
 async function GetAllShipping() {
   return await axios
     .get(`${apiUrl}/Shipping`, requestOptions)
@@ -339,6 +389,13 @@ export {
     DeletePayment,
     GetPaymentMethod,
     GetCollectedCodesToShow,
-    GetAllShipping
+    GetAllShipping,
+    GetClaims,
+    GetClaimByID,
+    CreateClaim,
+    UpdateClaimByID,
+    DeleteClaim,
+    GetClaimStatus,
+    GetProblems,
 
 };

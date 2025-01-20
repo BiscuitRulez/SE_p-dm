@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { List, Button, Typography, Layout } from "antd";
 import ClaimPopup from "./ClaimPopUp";
-import "./HistoryClaim.css";
+import "./History.css";
 
 const { Text, Title } = Typography;
 const { Header, Content } = Layout;
@@ -14,8 +14,8 @@ interface Product {
   quantity: number;
   orderId: string;
 }
-
-const HistoryClaim: React.FC = () => {
+// ยังไม่ได้ใช้งาน
+const Claim: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isPopupVisible, setPopupVisible] = useState(false);
 
@@ -55,7 +55,7 @@ const HistoryClaim: React.FC = () => {
               marginBottom: "30px",
             }}
           >
-            History/Claim
+            Claim
           </Title>
           <List
             dataSource={products}
@@ -109,4 +109,8 @@ const HistoryClaim: React.FC = () => {
     </Layout>
   );
 };
-export default HistoryClaim;
+export default Claim;
+
+
+
+  

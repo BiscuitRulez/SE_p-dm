@@ -9,6 +9,7 @@ type Claim struct {
 	gorm.Model
 	Date      			time.Time 	`valid:"required~Date is required"`
 	Photo     			string    	`valid:"required~Photo is required"`
+	Reason				string    	`valid:"required~Reason is required"`
 
 	ProblemID 			uint      	`valid:"required~ProblemID is required"`
 	Problem   			Problem   	`gorm:"foreignKey:ProblemID"`

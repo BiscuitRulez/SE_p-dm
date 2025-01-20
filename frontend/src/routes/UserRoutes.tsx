@@ -6,6 +6,8 @@ import Loadable from "../components/third-party/Loadable";
 
 import UserLayout from "../layout/UserLayout";
 
+// import ClaimNotiUser from "../pages/claim/ClaimNotiUser";
+
 
 const MainPages = Loadable(lazy(() => import("../pages/authentication/Login")));
 
@@ -25,9 +27,9 @@ const AddAddressPage = Loadable(lazy(() => import("../pages/customer/palm/profil
 
 const PaymentPage = Loadable(lazy(() => import("../pages/payment/payment")));
 
-const HisCaim = Loadable(lazy(() => import("../pages/claim/HistoryClaim")));
+const History = Loadable(lazy(() => import("../pages/claim/History")));
 
-const Claimrequest = Loadable(lazy(() => import("../pages/claim/Claim_request")));
+const ClaimNotiUser = Loadable(lazy(() => import("../pages/claim/ClaimNotiUser")));
 
 
 const UserRoutes = (isLoggedIn: boolean): RouteObject => {
@@ -82,12 +84,12 @@ const UserRoutes = (isLoggedIn: boolean): RouteObject => {
         element: <PaymentPage />,
       },
       {
-        path: "/historyclaim", 
-        element: <HisCaim />,
+        path: "/history", 
+        element: <History />,
       },
       {
-        path: "/claimrequest", 
-        element: <Claimrequest />,
+        path: "/claimnotiuser", 
+        element: <ClaimNotiUser />,
       },
     ],
   };

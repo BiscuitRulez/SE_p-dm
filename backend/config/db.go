@@ -97,10 +97,10 @@ func SetupDatabase() {
 	
 //---------------------------------------------------------------------------------------------------------------//
 	payments := []entity.Payment{
-		{PaymentMethodID: 1, PaymentStatusID: 1, Date: time.Now(), UserID: 1},
-		{PaymentMethodID: 1, PaymentStatusID: 2, Date: time.Now(), UserID: 1},
-		{PaymentMethodID: 2, PaymentStatusID: 1, Date: time.Now(), UserID: 2},
-		{PaymentMethodID: 2, PaymentStatusID: 2, Date: time.Now(), UserID: 3},
+		{PaymentMethodID: 1, PaymentStatusID: 1, Date: time.Now(), UserID: 1,AddressID: 1},
+		{PaymentMethodID: 1, PaymentStatusID: 2, Date: time.Now(), UserID: 1,AddressID: 2},
+		{PaymentMethodID: 2, PaymentStatusID: 1, Date: time.Now(), UserID: 2,AddressID: 3},
+		{PaymentMethodID: 2, PaymentStatusID: 2, Date: time.Now(), UserID: 3,AddressID: 2},
 	}
 
 	for _, payment := range payments {
